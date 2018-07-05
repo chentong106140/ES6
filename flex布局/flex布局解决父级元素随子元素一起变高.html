@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:14px;">
+<head>
+    <meta charset="UTF-8">
+    <title>const</title>
+    <style type="text/css">
+        div {
+            border: 1px solid red;
+        }
+        .container1{
+            min-height: 50px;
+            background-color: aquamarine;
+        }
+        .container1:after{
+            content:'';
+            display: block;
+            clear:both;
+        }
+
+        .container1 .left {
+            width: 48%;
+            float: left;
+        }
+
+        .container1 .right {
+            width: 48%;
+            float: right;
+        }
+
+        .container1 .left, .container1 .right {
+            height: 200px;
+            text-align: center;
+            line-height: 2rem;
+            vertical-align:middle;
+            color: red;
+            font-size: 2rem;
+            display: flex;
+        }
+        /*
+                如上布局方式，有2个问题：
+                1：必须使用clear:both来清除浮动，才能不影响.container1下面容器的布局（所谓不影响就是.container1的高度没有随子内容的高度一起变高，而是一直是默认的高度）
+                2：如果内部2个子容器，宽度固定的时，同时，浏览器宽度不够时，子容器.left,.right就会滑到第二行
+         */
+
+        /*****************************解决方案：flex布局***************************************************************/
+        /*
+                父级元素定义display:flex,子元素宽度用flex来定义,flex:1 是均分父级元素。占的比例相同
+                flex是所占的比例，这样的布局就方便很多。
+         */
+        .container2{
+            min-height: 50px;
+            background-color: aquamarine;
+            margin-top: 100px;
+            display:flex;
+        }
+
+        .container2 .left {
+            flex:1;
+
+        }
+
+        .container2 .right {
+            flex:2;
+        }
+
+        .container2 .left, .container2 .right {
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+            color: red;
+            font-size: 2rem;
+        }
+
+        /*****************************设置子容器上下左右居中***************************************************************/
+        /*
+                子容器写了margin：auto auto；这个方法的使用前提就是先把父元素设为display:flex
+         */
+        .container3{
+            min-height: 50px;
+            background-color: aquamarine;
+            margin-top: 100px;
+            display:flex;
+        }
+
+        .container3 .left {
+           margin:auto;
+        }
+
+
+        .container3 .left {
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+            color: red;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container1">
+    <div class="left"><span style="margin: auto;">子集元素高度固定，父级元素高度应该随子集元素变高而变高，使用:before伪类解决方案</span></div>
+    <div class="right">右侧元素</div>
+</div>
+<div class="container2">
+    <div class="left">flex布局，flex:1,占比1:2</div>
+    <div class="right">flex布局，flex:2 占比2:1</div>
+</div>
+<div class="container3">
+    <div class="left">子级元素在不确定width与height的时候，也要让子级元素在父级元素内上下左右居中</div>
+</div>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

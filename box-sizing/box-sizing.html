@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>盒子模型</title>
+    <script src="../common/js/jquery-2.0.3.js"></script>
+    <style type="text/css">
+
+
+        body div{
+            width:200px;
+            height:200px;
+            float:left;
+            padding:20px;
+            border:5px solid red;
+            background: blue;
+            color:#FFF;
+            font-size:16px;
+            margin:10px;
+            line-height: 16px;
+        }
+        body div:nth-child(1){
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+        }
+        body div:nth-child(2){
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        body div:nth-child(3){
+
+        }
+
+        h2{
+            display: block;
+            float: left;
+        }
+
+    </style>
+</head>
+<body>
+<div class="a1"></div>
+<div class="a2"></div>
+<div class="a3"></div>
+<h2>
+<pre>
+    一：不设置box-sizing计算公式：
+    默认使用content-box
+
+    二：content-box计算公式（默认值）：
+    元素实际占用页面的宽度250（200+10+40）=边框总宽度10（border) + 内边距总宽度40（padding) + 元素样式宽度200（width）
+
+    特点：
+    设置的样式宽度就是实际可容纳宽度
+    我们已知实际可容纳宽度值的话，而实际占用宽度需要计算
+
+
+    优点：设置的width属性值就是实际可容纳内容的宽度
+    缺点：实际占用页面的宽度需要计算
+
+
+    三：border-box计算公式：
+    元素实际占用页面的宽度200=边框总宽度10（border) + 内边距总宽度40（padding) + 实际可容纳宽度150（200-10-40）
+
+    特点：
+    设置的样式宽度就是实际占用页面的宽度
+    如果想要得到实际可容纳宽度，就需要将样式表里面的width值减去border与padding的值，
+
+    好处是，已知实际占用宽度，设置的width属性值就是实际占用页面的宽度
+    缺点是，我们需要得到实际可容纳的宽度就需要去计算
+    </pre>
+</h2>
+
+<script type="text/javascript">
+
+    $(function(){
+
+        $("div").each(function () {
+            $(this).html(function(){
+                var width = $(this).outerWidth();
+                var widths = $(this).width();
+                var boxSizing = $(this).css("box-sizing");
+                return "<h3>"+boxSizing+"</h3>元素实际占用位置宽度："+width+"px<br/><br/><br/>元素实际可容纳宽度："+widths+"px";
+            });
+        })
+    });
+</script>
+</body>
+</html>

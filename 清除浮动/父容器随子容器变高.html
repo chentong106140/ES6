@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:14px;">
+<head>
+    <meta charset="UTF-8">
+    <title>const</title>
+    <style type="text/css">
+        div {
+            border: 1px solid red;
+        }
+        .container1{
+            min-height: 50px;
+            background-color: aquamarine;
+        }
+
+        .container1 .left {
+            width: 48%;
+            float: left;
+        }
+
+        .container1 .right {
+            width: 48%;
+            float: right;
+        }
+
+        .container1 .left, .container1 .right {
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+            color: red;
+            font-size: 2rem;
+        }
+        /***************************************************************************************************************/
+        /*
+            如上案例，根据效果页面.container1容器没有被撑开，使用min-height:只是为了看容器是否随内部子容器变高，高度而变高。
+            通过效果图，再不确定父容器高度的情况下，父容器一般不设置height属性，一般需要随子容器变高而变高。
+        */
+
+
+        /*******************************解决方案1：清除浮动**************************************************************/
+        /*
+            添加尾部div,使用clear:both;来闭合元素
+
+            根据container2的效果，我们发现父容器确实整个被撑开了
+        */
+        /***************************************************************************************************************/
+
+        .container2{
+            min-height: 50px;
+            background-color: aquamarine;
+            margin-top: 200px;
+        }
+
+        .container2 .left {
+            width: 48%;
+            float: left;
+        }
+
+        .container2 .right {
+            width: 48%;
+            float: right;
+        }
+
+        .container2 .left, .container2 .right {
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+            color: red;
+            font-size: 2rem;
+        }
+        .clear{
+            clear:both;
+        }
+
+        /*******************************解决方案2：使用:after 清除浮动**************************************************************/
+        /*
+            使用:after伪类，添加content，clear,display，3要素，缺一不可，解决父容器不随子容器变高而变高的难题
+
+            根据container2的效果，我们发现父容器确实整个被撑开了
+        */
+        /***************************************************************************************************************/
+
+        .container3{
+            min-height: 50px;
+            background-color: aquamarine;
+            margin-top: 50px;
+        }
+        .container3:after{
+            content:' ';
+            clear:both;
+            display: block;
+
+        }
+
+        .container3 .left {
+            width: 48%;
+            float: left;
+        }
+
+        .container3 .right {
+            width: 48%;
+            float: right;
+        }
+
+        .container3 .left, .container3 .right {
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+            color: red;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container1">
+    <div class="left">container1左侧区域</div>
+    <div class="right">container1右侧区域</div>
+</div>
+<div class="container2">
+    <div class="left">container2左侧区域</div>
+    <div class="right">container2右侧区域</div>
+    <div class="clear"></div>
+</div>
+<div class="container3">
+    <div class="left">container3左侧区域</div>
+    <div class="right">container3右侧区域</div>
+</div>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

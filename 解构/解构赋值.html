@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>解构赋值</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**
+     * 对象的解构赋值如下：
+     */
+    var Obj1 = {name: "陈通", age: 18};
+    var {name, age} = Obj1;
+    console.log(name, age);
+
+    //同等于
+    var name = Obj1.name;
+    var age = Obj1.age;
+    console.log(name, age);
+
+    /**
+     * 对象的解构获取参数如下
+     * 
+     * 角色：调用者
+     * 在这里，test方法的作用类似，调用者创建该方法具体逻辑，参数由调用者自由选择调用哪个参数
+     * 跟以前的写法不一样，还得根据实际声明该方法时的参数顺序，而现在无需考虑参数顺序，直接让调用者自由选择参数入参
+     */
+    function test({show}) {
+        show("测试成功！");
+    }
+    /**
+     * 角色：底层插件
+     *声明上层接口调用，类似于回调test,一般会写在插件内，负责调用，传参
+     *参数由插件负责传入，而，调用者只需要声明该方法的具体实现，同时调用者负责调用由插件传入的哪个参数
+     */
+    test({
+        hide(){
+            alert("hide")
+        }, show(msg){
+            alert(msg);
+        }
+        });
+
+
+    /**
+     * 数组结构赋值如下：
+     */
+    var [a, b, c] = [1, 2, 3];
+    //等同于
+    var a = 1;
+    var b = 2;
+    var c = 3;
+    console.log(a, b, c);
+
+    /**
+     * 默认值
+     */
+    var [a,b=100] = [10];
+    console.log(a,b);   //10 100
+    
+    
+    var {name,age=10} = {name:"chentong"}
+    console.log(name,age);  // chentong,10  
+
+</script>
+</body>
+</html>

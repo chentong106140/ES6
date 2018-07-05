@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flex语法概念</title>
+    <style type="text/css">
+        * {
+            padding: 0px;
+            margin: 0px;
+            border: 0px
+        }
+
+        html {
+            font-size: 15px;
+        }
+
+        body {
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #E2E2E2;
+            color: #595B66;
+            max-width: 1024px;
+            font-family: 'Microsoft Yahei', sans-serif;
+        }
+
+        h1, h2, h3, h4 {
+            color: #797979;
+            padding: 5px 0;
+        }
+
+        h1, h2 {
+            border-bottom: 2px solid #797979;
+        }
+
+        p, pre {
+            background-color: #797979;
+            padding: 10px;
+            color: white;
+            line-height: 2rem;
+            border-radius: 5px;
+        }
+
+        p, h1, h2, h3, h4, pre {
+            margin: 15px 0;
+        }
+
+        code {
+            color: #111111;
+            display: inline-block;
+            padding-left: 5px;
+            padding-right: 5px;
+            font-size: 120%;
+            background-color: pink;
+            border-radius: 5px;
+            margin: auto 3px;
+        }
+
+        .box {
+            background-color: white;
+            margin: 15px 0 40px;
+            display: -webkit-flex;
+            display: flex;
+        }
+
+        .box-1 {
+            -webkit-flex-direction: row;
+            -moz-flex-direction: row;
+            -ms-flex-direction: row;
+            -o-flex-direction: row;
+            flex-direction: row;
+        }
+
+        .box-2 {
+            flex-direction: row-reverse;
+        }
+
+        .box-item {
+            width: 200px;
+            height: 200px;
+            line-height: 1.5rem;
+            background-color: #ffd200;
+            font-size: 6.6rem;
+            color: white;
+            margin: 5px;
+            text-align: center;
+            display: flex;/*只是为了内容居中才设置的flex*/
+        }
+
+        span {
+            margin: auto;
+        }
+
+    </style>
+</head>
+<body>
+<h1>Flex布局语法概念</h1>
+<p>
+    参考阮一峰老师教程：http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?utm_source=tuicool
+</p>
+<h2>容器的属性</h2>
+<h3>1、flex-direction属性</h3>
+<p>flex-direction：属性决定主轴的方向（即项目的排列方向）。</p>
+<pre>
+    row（默认值）：主轴为水平方向，起点在左端。
+    row-reverse：主轴为水平方向，起点在右端。
+    column：主轴为垂直方向，起点在上沿。
+    column-reverse：主轴为垂直方向，起点在下沿
+</pre>
+<pre>
+    父元素 {
+    display: flex;
+    flex-direction: row;
+    }
+    通过如下效果可以看出，子元素的排序方式是从左往右排列
+</pre>
+<div class="box box-flex-direction_row">
+    <div class="box-item"><span>1</span></div>
+    <div class="box-item"><span>2</span></div>
+    <div class="box-item"><span>3</span></div>
+    <div class="box-item"><span>4</span></div>
+</div>
+<pre>
+    父元素 {
+    display: flex;
+    flex-direction: row-reverse;
+    }
+    通过如下效果可以看出，子元素的排列方式是从右往左排列
+</pre>
+<div class="box box-2">
+    <div class="box-item"><span>1</span></div>
+    <div class="box-item"><span>2</span></div>
+    <div class="box-item"><span>3</span></div>
+    <div class="box-item"><span>4</span></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>箭头函数</title>
+</head>
+<body>
+<script type="text/javascript">
+    //使用箭头声明函数
+    var sum = (num1, num2) =>{ return num1 + num2;}
+    //等同于
+    var sum2 = function (num1, num2) {
+        return num1 + num2;
+    };
+    console.log(sum(1, 2), sum2(1, 2));
+
+
+    var array = [1, 2, 3];
+    //传统写法
+    array.forEach(function (v, i, a) {
+        console.log(v);
+    });
+    //ES6 定义函数作为参数传递写法1
+    array.forEach((v) => {console.log("A",v)});
+    //ES6 定义函数作为参数传递写法2
+    array.forEach(v => console.log("B",v));
+</script>
+</body>
+</html>

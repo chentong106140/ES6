@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:14px; padding: 0px ;margin: 0px; border:0px; overflow: hidden;">
+<head>
+    <meta charset="UTF-8">
+    <title>const</title>
+    <style type="text/css">
+        body, html {
+            height: 100%;
+        }
+
+        div {
+            border: 1px solid red;
+        }
+
+        .container1 {
+            width: 400px;
+            height: 100%;
+            background-color: #D9D9D9;
+            margin: auto;
+
+            /*关键设置如下*/
+            display: flex;
+        }
+
+        .container1 > span:first-child {
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="container1">
+    <span>
+由于文字描述是多行文本，
+    一般情况下，我们希望文字上下左右居中是设置<span style="color:red">line-height:xx;text-align:center;</span>但是，这种
+    方式会导致，文字多行的时候，行与行之间有很大的间隙，所以，这种方式只适合文字只有一行的时候才行。<br/>
+    如果多行的话，可以使用flex布局的方式，父级元素设置了<span style="color:red">display:flex;</span>子级元素设置<span
+            style="color:red">margin:auto;</span>就会自适应宽高，并且在父级元素上下左右居中。</span>
+</div>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

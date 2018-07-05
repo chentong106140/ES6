@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>参数默认值</title>
+</head>
+<body>
+<script type="text/javascript">
+    function sayHello(name) {
+        //传统的指定默认参数的方式
+        var name = name || '陈通';
+        console.log('Hello ' + name);
+    }
+    //运用ES6的默认参数
+    function sayHello2(name='陈通') {
+        console.log(`Hello ${name}`);
+    }
+
+    sayHello();
+    sayHello2();
+
+</script>
+</body>
+</html>
