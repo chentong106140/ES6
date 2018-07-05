@@ -54,9 +54,30 @@
             border-radius: 5px;
             margin: auto 3px;
         }
-
-        .box {
+        .box-item {
+            width: 200px;
+            height: 200px;
+            line-height: 1.5rem;
             background-color: white;
+
+
+            margin: 5px;
+            text-align: center;
+            display: flex;/*只是为了内容居中才设置的flex*/
+        }
+
+        span {
+            margin: auto;
+            background-color: #ffd200;
+            color: white;
+            border-radius:50%;
+            font-size: 6.6rem;
+            width:100px;
+            height:100px;
+            line-height: 100px;
+        }
+        .box {
+            background-color: #ffd200;
             margin: 15px 0 40px;
             display: -webkit-flex;
             display: flex;
@@ -74,20 +95,68 @@
             flex-direction: row-reverse;
         }
 
-        .box-item {
-            width: 200px;
-            height: 200px;
-            line-height: 1.5rem;
-            background-color: #ffd200;
-            font-size: 6.6rem;
-            color: white;
-            margin: 5px;
-            text-align: center;
-            display: flex;/*只是为了内容居中才设置的flex*/
+        .box-3{
+            flex-direction:column;
+            height:1000px;
         }
 
-        span {
-            margin: auto;
+        .box-4{
+            flex-direction:column-reverse;
+            height:1000px;
+        }
+
+        .box-5{
+            flex-direction:row;
+            flex-wrap:nowrap;
+        }
+
+        .box-6{
+            flex-direction:row;
+            flex-wrap:wrap;
+        }
+
+        .box-7{
+            flex-direction:row;
+            flex-wrap:wrap-reverse;
+        }
+
+        .box-8{
+            flex-flow:row nowrap;
+        }
+
+        .box-9{
+            flex-flow:column wrap;
+            height: 800px;
+        }
+
+        .box-10{
+            flex-flow:row nowrap;
+            justify-content: flex-start;
+            height:400px;
+        }
+
+        .box-11{
+            flex-flow:row nowrap;
+            justify-content: flex-end;
+            height:400px;
+        }
+
+        .box-12{
+            flex-flow:row nowrap;
+            justify-content: center;
+            height:400px;
+        }
+
+        .box-13{
+            flex-flow:row nowrap;
+            justify-content: space-between;
+            height:400px;
+        }
+
+        .box-14{
+            flex-flow:row nowrap;
+            justify-content: space-around;
+            height:400px;
         }
 
     </style>
@@ -107,20 +176,20 @@
     column-reverse：主轴为垂直方向，起点在下沿
 </pre>
 <pre>
-    父元素 {
+    .box-1 {
     display: flex;
     flex-direction: row;
     }
     通过如下效果可以看出，子元素的排序方式是从左往右排列
 </pre>
-<div class="box box-flex-direction_row">
+<div class="box box-1">
     <div class="box-item"><span>1</span></div>
     <div class="box-item"><span>2</span></div>
     <div class="box-item"><span>3</span></div>
     <div class="box-item"><span>4</span></div>
 </div>
 <pre>
-    父元素 {
+    .box-2 {
     display: flex;
     flex-direction: row-reverse;
     }
@@ -131,6 +200,233 @@
     <div class="box-item"><span>2</span></div>
     <div class="box-item"><span>3</span></div>
     <div class="box-item"><span>4</span></div>
+</div>
+<pre>
+    .box-3 {
+    display: flex;
+    flex-direction: column;
+    height:1000px;
+    }
+    通过如下效果可以看出，子元素的排列方式是从上往下排列
+</pre>
+<div class="box box-3">
+    <div class="box-item"><span>1</span></div>
+    <div class="box-item"><span>2</span></div>
+    <div class="box-item"><span>3</span></div>
+    <div class="box-item"><span>4</span></div>
+</div>
+<pre>
+    .box-4 {
+    display: flex;
+    flex-direction: column-reverse;
+    height:1000px;
+    }
+    通过如下效果可以看出，子元素的排列方式是从下往上排列
+</pre>
+<div class="box box-4">
+    <div class="box-item"><span>1</span></div>
+    <div class="box-item"><span>2</span></div>
+    <div class="box-item"><span>3</span></div>
+    <div class="box-item"><span>4</span></div>
+</div>
+<h3>2、flex-wrap属性</h3>
+<p>默认情况下，项目都排在一条线（又称"轴线"）上。flex-wrap属性定义，如果一条轴线排不下，如何换行。</p>
+<pre>
+    nowrap(默认值)      不换行
+    wrap               换行，第一行在上方。
+    wrap-reverse       换行，第一行在下方。
+</pre>
+<pre>
+    .box-5{
+            display: flex;
+            flex-direction:row; /*默认水平从左往右排列*/
+            flex-wrap:nowrap;/*不换行，在一行显示*/
+        }
+    通过如下效果可以看出，子元素的宽度加起来其实已经超出父容器的宽度，但是，并没有挤出去，而是，自动控制子元素的宽度，
+    正好占满父容器宽度，并且在第一行显示，没有因为父容器宽度不够，而挤到第二行，也是由于设置了flex-wrap:nowrap;的原因。
+</pre>
+<div class="box box-5">
+    <div class="box-item"><span>1</span></div>
+    <div class="box-item"><span>2</span></div>
+    <div class="box-item"><span>3</span></div>
+    <div class="box-item"><span>4</span></div>
+    <div class="box-item"><span>5</span></div>
+    <div class="box-item"><span>6</span></div>
+    <div class="box-item"><span>7</span></div>
+</div>
+<pre>
+    .box-6{
+            display: flex;
+            flex-direction:row; /*默认水平从左往右排列*/
+            flex-wrap:wrap; /*子元素的宽度超出父容器的宽度，进行换行，第一行在上面*/
+        }
+    通过如下效果可以看出，子元素的宽度加起来其实已经超出父容器的宽度，所以，宽度超出的子元素，自动进行换行，并且，第一行在上面
+</pre>
+<div class="box box-6">
+    <div class="box-item"><span>1</span></div>
+    <div class="box-item"><span>2</span></div>
+    <div class="box-item"><span>3</span></div>
+    <div class="box-item"><span>4</span></div>
+    <div class="box-item"><span>5</span></div>
+    <div class="box-item"><span>6</span></div>
+    <div class="box-item"><span>7</span></div>
+</div>
+<pre>
+    .box-7{
+            display: flex;
+            flex-direction:row; /*默认水平从左往右排列*/
+            flex-wrap:wrap-reverse; /*子元素的宽度超出父容器的宽度，进行换行，第一行在下面*/
+        }
+    通过如下效果可以看出，子元素的宽度加起来其实已经超出父容器的宽度，所以，宽度超出的子元素，自动进行换行，并且，第一行在上面
+</pre>
+<div class="box box-7">
+    <div class="box-item"><span>1</span></div>
+    <div class="box-item"><span>2</span></div>
+    <div class="box-item"><span>3</span></div>
+    <div class="box-item"><span>4</span></div>
+    <div class="box-item"><span>5</span></div>
+    <div class="box-item"><span>6</span></div>
+    <div class="box-item"><span>7</span></div>
+</div>
+
+<h3>3、flex-flow属性</h3>
+<p>flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。</p>
+<pre>
+    row nowrap;(默认值)     排列从左往右， 不换行
+    row wrap                排列从左往右， 换行，第一行在上面
+    row wrap-reverse        排列从左往右， 换行，第一行在下面
+    column nowrap;(默认值)     排列从左往右， 不换行
+    column wrap                排列从左往右， 换行，第一行在上面
+    column wrap-reverse        排列从左往右， 换行，第一行在下面
+</pre>
+<pre>
+    .box-8{
+            display: flex;
+            flex-flow:row nowrap;/* 从左往右排列，不换行 */
+        }
+    通过如下效果可以看出，子元素的宽度加起来其实已经超出父容器的宽度，但是并没有换行，而是所有子元素进行自适应
+    并且排列方式是从左往右排列
+</pre>
+<div class="box box-8">
+    <div class="box-item"><span>1</span></div>
+    <div class="box-item"><span>2</span></div>
+    <div class="box-item"><span>3</span></div>
+    <div class="box-item"><span>4</span></div>
+    <div class="box-item"><span>5</span></div>
+    <div class="box-item"><span>6</span></div>
+    <div class="box-item"><span>7</span></div>
+</div>
+<pre>
+    .box-9{
+            display: flex;
+            flex-flow:column wrap;/*从上往下排列，并且换行*/
+            height: 800px;
+        }
+    通过如下效果可以看出，子元素是从上往下排列，在所有子元素高度加起来超出父元素的时候，进行换行
+</pre>
+<div class="box box-9">
+    <div class="box-item"><span>1</span></div>
+    <div class="box-item"><span>2</span></div>
+    <div class="box-item"><span>3</span></div>
+    <div class="box-item"><span>4</span></div>
+    <div class="box-item"><span>5</span></div>
+    <div class="box-item"><span>6</span></div>
+    <div class="box-item"><span>7</span></div>
+</div>
+
+<h3>4、justify-content属性</h3>
+<p>justify-content属性定义了项目在主轴(水平轴)上的对齐方式。</p>
+<pre>
+    flex-start(默认值)     左对齐
+    flex-end               右对齐
+    center                 居中
+    space-between：        两端对齐，项目之间的间隔都相等。
+    space-around：         每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。
+</pre>
+<pre>
+    .box-10{
+            display: flex;
+            flex-flow:row nowrap;/*从左往右排列，不换行*/
+            justify-content: flex-start;/*左对齐*/
+            height:400px;
+        }
+    通过如下效果可以看出，子元素，从左往右排列，并且不换行
+    如果当子元素宽度没有占满父元素的时候，子元素整体在父元素内，左对齐；
+    如果当子元素宽度占满父元素的时候，每个子元素整体平均宽度，占满父元素
+    内容排列在主轴上，也就是在父元素内的上部分,左对齐
+</pre>
+<div class="box box-10">
+    <div class="box-item"><span>1</span></div>
+    <div class="box-item"><span>2</span></div>
+    <div class="box-item"><span>3</span></div>
+</div>
+<pre>
+    .box-11{
+            display: flex;
+            flex-flow:row nowrap;/*从左往右排列，不换行*/
+            justify-content: flex-start;/*右对齐*/
+            height:400px;
+        }
+    通过如下效果可以看出，子元素，从左往右排列，并且不换行
+    如果当子元素宽度没有占满父元素的时候，子元素整体在父元素内，右对齐；
+    如果当子元素宽度占满父元素的时候，每个子元素整体平均宽度，占满父元素
+    内容排列在主轴上，也就是在父元素内的上部分,右对齐
+</pre>
+<div class="box box-11">
+    <div class="box-item"><span>1</span></div>
+    <div class="box-item"><span>2</span></div>
+    <div class="box-item"><span>3</span></div>
+</div>
+<pre>
+    .box-12{
+            display: flex;
+            flex-flow:row nowrap;/*从左往右排列，不换行*/
+            justify-content: center;/*居中*/
+            height:400px;
+        }
+    通过如下效果可以看出，子元素，从左往右排列，并且不换行
+    如果当子元素宽度没有占满父元素的时候，子元素整体在父元素内，居中；
+    如果当子元素宽度占满父元素的时候，每个子元素整体平均宽度，占满父元素
+    内容排列在主轴上，也就是在父元素内的上部分,居中
+</pre>
+<div class="box box-12">
+    <div class="box-item"><span>1</span></div>
+    <div class="box-item"><span>2</span></div>
+    <div class="box-item"><span>3</span></div>
+</div>
+<pre>
+    .box-13{
+            display: flex;
+            flex-flow:row nowrap;/*从左往右排列，不换行*/
+            justify-content: center;/*居中*/
+            height:400px;
+        }
+    通过如下效果可以看出，子元素，从左往右排列，并且不换行
+    如果当子元素宽度没有占满父元素的时候，子元素进行两端对其，子元素与子元素之间的间隔相等
+    如果当子元素宽度占满父元素的时候，每个子元素整体平均宽度，占满父元素
+    内容排列在主轴上，也就是在父元素内的上部分,两端对其
+</pre>
+<div class="box box-13">
+    <div class="box-item"><span>1</span></div>
+    <div class="box-item"><span>2</span></div>
+    <div class="box-item"><span>3</span></div>
+</div>
+<pre>
+    .box-14{
+            display: flex;
+            flex-flow:row nowrap;/*从左往右排列，不换行*/
+            justify-content: center;/*居中*/
+            height:400px;
+        }
+    通过如下效果可以看出，子元素，从左往右排列，并且不换行
+    如果当子元素宽度没有占满父元素的时候，每个子元素两侧的间隔相等。所以，子元素之间的间隔比项目与边框的间隔大一倍。
+    如果当子元素宽度占满父元素的时候，每个子元素整体平均宽度，占满父元素
+    内容排列在主轴上，也就是在父元素内的上部分,两端对其
+</pre>
+<div class="box box-14">
+    <div class="box-item"><span>1</span></div>
+    <div class="box-item"><span>2</span></div>
+    <div class="box-item"><span>3</span></div>
 </div>
 </body>
 </html>
