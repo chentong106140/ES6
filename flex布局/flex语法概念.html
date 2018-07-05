@@ -159,6 +159,69 @@
             height:400px;
         }
 
+        .box-15{
+            flex-flow:row nowrap;
+            justify-content: center;
+            align-items:center;
+            height:400px;
+        }
+
+        .box-16{
+            flex-flow:row nowrap;
+            justify-content: center;
+            align-items:flex-start;
+            height:400px;
+        }
+
+        .box-17{
+            flex-flow:row nowrap;
+            justify-content: center;
+            align-items:flex-end;
+            height:400px;
+        }
+
+        .box-18{
+            flex-flow:row nowrap;
+            justify-content: center;
+            align-items:baseline;
+            height:400px;
+        }
+
+        .box-19{
+            flex-flow:row nowrap;
+            justify-content: center;
+            align-items:stretch;
+            height:400px;
+        }
+
+        .box-19 .box-item{
+            height: auto;
+        }
+        .box-20{
+            flex-flow:row wrap;
+            justify-content: center;
+            align-items:center;
+            align-content:stretch;
+            height:800px;
+        }
+
+        .box-21{
+            flex-flow:row wrap;
+            justify-content: center;
+            align-items:center;
+            align-content:center;
+            height:800px;
+        }
+        .box-22{
+            flex-flow:row nowrap;
+            justify-content: center;
+            align-items:center;
+            align-content:center;
+            height:400px;
+        }
+        .box-22 .box-item:last-child{
+            order:-1;
+        }
     </style>
 </head>
 <body>
@@ -166,7 +229,7 @@
 <p>
     参考阮一峰老师教程：http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?utm_source=tuicool
 </p>
-<h2>容器的属性</h2>
+<h2>父级容器的属性</h2>
 <h3>1、flex-direction属性</h3>
 <p>flex-direction：属性决定主轴的方向（即项目的排列方向）。</p>
 <pre>
@@ -334,7 +397,7 @@
     <div class="box-item"><span>7</span></div>
 </div>
 
-<h3>4、justify-content属性</h3>
+<h3>4、justify-content(水平轴)属性</h3>
 <p>justify-content属性定义了项目在主轴(水平轴)上的对齐方式。</p>
 <pre>
     flex-start(默认值)     左对齐
@@ -398,7 +461,7 @@
     .box-13{
             display: flex;
             flex-flow:row nowrap;/*从左往右排列，不换行*/
-            justify-content: center;/*居中*/
+            justify-content: space-between;/*左右对齐*/
             height:400px;
         }
     通过如下效果可以看出，子元素，从左往右排列，并且不换行
@@ -415,7 +478,7 @@
     .box-14{
             display: flex;
             flex-flow:row nowrap;/*从左往右排列，不换行*/
-            justify-content: center;/*居中*/
+            justify-content: space-around;/*每个项目两侧的间隔相等*/
             height:400px;
         }
     通过如下效果可以看出，子元素，从左往右排列，并且不换行
@@ -424,6 +487,217 @@
     内容排列在主轴上，也就是在父元素内的上部分,两端对其
 </pre>
 <div class="box box-14">
+    <div class="box-item"><span>1</span></div>
+    <div class="box-item"><span>2</span></div>
+    <div class="box-item"><span>3</span></div>
+</div>
+<h3>5、align-items（y轴）属性</h3>
+<p>align-items属性定义项目在交叉轴上如何对齐。</p>
+<pre>
+    flex-start             交叉轴的起点对齐
+    flex-end               交叉轴的终点对齐
+    center                 交叉轴的中点对齐
+    baseline               项目的第一行文字的基线对齐
+    stretch(默认值)         如果子元素未设置高度或设为auto，将占满整个容器的高度。
+</pre>
+
+<pre>
+    .box-15{
+            display: flex;
+            flex-flow:row nowrap;/*从左往右排列，不换行*/
+            justify-content: center;/*水平居中*/
+            align-items:center;/*垂直居中*/
+            height:400px;
+        }
+    通过如下效果可以看出，子元素，从左往右排列，并且不换行
+    如果当子元素宽度没有占满父元素的时候，子元素上下左右居中
+    如果当子元素宽度占满父元素的时候，每个子元素整体平均宽度，占满父元素
+    内容排列在x,y轴上，也就是在父元素内水平居中，垂直居中
+</pre>
+<div class="box box-15">
+    <div class="box-item"><span>1</span></div>
+    <div class="box-item"><span>2</span></div>
+    <div class="box-item"><span>3</span></div>
+</div>
+
+<pre>
+    .box-16{
+            display: flex;
+            flex-flow:row nowrap;/*从左往右排列，不换行*/
+            justify-content: center;/*水平居中*/
+            align-items:flex-start;/*y轴起点*/
+            height:400px;
+        }
+    通过如下效果可以看出，子元素，从左往右排列，并且不换行
+    如果当子元素宽度没有占满父元素的时候，子元素在水平轴上居中，在y轴上部分
+    如果当子元素宽度占满父元素的时候，每个子元素整体平均宽度，占满父元素
+    内容排列在x,y轴上，也就是在父元素内水平居中，垂直居上
+</pre>
+<div class="box box-16">
+    <div class="box-item"><span>1</span></div>
+    <div class="box-item"><span>2</span></div>
+    <div class="box-item"><span>3</span></div>
+</div>
+
+<pre>
+    .box-17{
+            display: flex;
+            flex-flow:row nowrap;/*从左往右排列，不换行*/
+            justify-content: center;/*水平居中*/
+            align-items:flex-end;/*y轴终点*/
+            height:400px;
+        }
+    通过如下效果可以看出，子元素，从左往右排列，并且不换行
+    如果当子元素宽度没有占满父元素的时候，子元素在水平轴上居中，在y轴下部分
+    如果当子元素宽度占满父元素的时候，每个子元素整体平均宽度，占满父元素
+    内容排列在x,y轴上，也就是在父元素内水平居中，垂直居下
+</pre>
+<div class="box box-17">
+    <div class="box-item"><span>1</span></div>
+    <div class="box-item"><span>2</span></div>
+    <div class="box-item"><span>3</span></div>
+</div>
+
+<pre>
+    .box-18{
+            display: flex;
+            flex-flow:row nowrap;/*从左往右排列，不换行*/
+            justify-content: center;/*水平居中*/
+            align-items:baseline;/*第一行文字基线为准*/
+            height:400px;
+        }
+    通过如下效果可以看出，子元素，从左往右排列，并且不换行
+    如果当子元素宽度没有占满父元素的时候，以第一行文字基线为准
+    如果当子元素宽度占满父元素的时候，每个子元素整体平均宽度，占满父元素
+    内容排列在x,y轴上，也就是在父元素内以第一行文字基线为准
+</pre>
+<div class="box box-18">
+    <div class="box-item"><span>1</span></div>
+    <div class="box-item"><span>2</span></div>
+    <div class="box-item"><span>3</span></div>
+</div>
+
+<pre>
+    .box-19{
+            display: flex;
+            flex-flow:row nowrap;/*从左往右排列，不换行*/
+            justify-content: center;/*水平居中*/
+            align-items:stretch;/*如果子元素未设置高度或设为auto，将占满整个容器的高度。*/
+            height:400px;
+        }
+    .box-item{
+        height:auto;
+    }
+    通过如下效果可以看出，子元素，从左往右排列，并且不换行
+    如果当子元素宽度没有占满父元素的时候，每个子元素占满整个容器的高度
+    如果当子元素宽度占满父元素的时候，每个子元素整体平均宽度，占满父元素
+</pre>
+<div class="box box-19">
+    <div class="box-item"><span>1</span></div>
+    <div class="box-item"><span>2</span></div>
+    <div class="box-item"><span>3</span></div>
+</div>
+
+<h3>6、align-content（多根轴线-子元素多行）属性</h3>
+<p>align-content属性定义了多根轴线（多行）的对齐方式。如果项目只有一根轴线，该属性不起作用。</p>
+<pre>
+        flex-start：与交叉轴的起点对齐。
+        flex-end：与交叉轴的终点对齐。
+        center：与交叉轴的中点对齐。
+        space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。
+        space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
+        stretch（默认值）：轴线占满整个交叉轴。
+</pre>
+<pre>
+    .box-20{
+            display: flex;
+            flex-flow:row nowrap;/*从左往右排列，不换行*/
+            justify-content: center;/*水平居中*/
+            align-items:center;/*垂直居中*/
+            align-content:stretch;/*内容多行的时候，轴线占满整个交叉线*/
+            height:800px;
+        }
+    通过如下效果可以看出，子元素，从左往右排列，并且换行，所以子级多行的时候，会占满整个轴线
+    如果当子元素宽度没有占满父元素的时候，水平垂直居中
+    如果当子元素宽度占满父元素，并且形成多行的时候，轴线占满整个交叉线
+</pre>
+<div class="box box-20">
+    <div class="box-item"><span>1</span></div>
+    <div class="box-item"><span>2</span></div>
+    <div class="box-item"><span>3</span></div>
+    <div class="box-item"><span>4</span></div>
+    <div class="box-item"><span>5</span></div>
+    <div class="box-item"><span>6</span></div>
+    <div class="box-item"><span>7</span></div>
+    <div class="box-item"><span>8</span></div>
+</div>
+<pre>
+    .box-21{
+            display: flex;
+            flex-flow:row nowrap;/*从左往右排列，不换行*/
+            justify-content: center;/*水平居中*/
+            align-items:center;/*垂直居中*/
+            align-content:center;/*内容多行的时候，居中*/
+            height:800px;
+        }
+    通过如下效果可以看出，子元素，从左往右排列，并且换行
+    如果当子元素宽度没有占满父元素的时候，子级元素水平垂直居中
+    如果当子元素宽度占满父元素的时候，子级元素水平垂直居中
+</pre>
+<div class="box box-21">
+    <div class="box-item"><span>1</span></div>
+    <div class="box-item"><span>2</span></div>
+    <div class="box-item"><span>3</span></div>
+    <div class="box-item"><span>4</span></div>
+    <div class="box-item"><span>5</span></div>
+    <div class="box-item"><span>6</span></div>
+    <div class="box-item"><span>7</span></div>
+    <div class="box-item"><span>8</span></div>
+</div>
+
+<h2>子级项目的属性</h2>
+<h3>1、order属性</h3>
+<p>order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。</p>
+<pre>
+    .box-22{
+            display: flex;
+            flex-flow:row nowrap;/*从左往右排列，不换行*/
+            justify-content: center;/*水平居中*/
+            align-items:center;/*垂直居中*/
+            align-content:center;/*内容多行的时候，居中*/
+            height:400px;
+        }
+    .box-22 .box-item:last-child{
+            order:-1;
+        }
+    通过如下效果可以看出，子元素，从左往右排列，并且不换行
+    我们将子元素最后一个div的order属性设置的值为-1，由于order属性默认值为0，所以它的值最小。
+    由于值最小，所以最后一个div排列到最前面
+</pre>
+<div class="box box-22">
+    <div class="box-item"><span>1</span></div>
+    <div class="box-item"><span>2</span></div>
+    <div class="box-item"><span>3</span></div>
+</div>
+<h3>1、flex-grow属性</h3>
+<p>flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。</p>
+<pre>
+    .box-22{
+            display: flex;
+            flex-flow:row nowrap;/*从左往右排列，不换行*/
+            justify-content: center;/*水平居中*/
+            align-items:center;/*垂直居中*/
+            align-content:center;/*内容多行的时候，居中*/
+            height:400px;
+        }
+    .box-22 .box-item:last-child{
+            order:-1;
+        }
+    通过如下效果可以看出，子元素，从左往右排列，并且不换行
+    我们将子元素最后一个div的order属性设置的值为-1，由于order属性默认值为0，所以它的值最小。
+    由于值最小，所以最后一个div排列到最前面
+</pre>
+<div class="box box-22">
     <div class="box-item"><span>1</span></div>
     <div class="box-item"><span>2</span></div>
     <div class="box-item"><span>3</span></div>
