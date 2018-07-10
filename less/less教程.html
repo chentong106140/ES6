@@ -3,18 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <title>Less</title>
+    <link rel="stylesheet" href="../common/css/bootstrap.css">
+    <link rel="stylesheet" href="../common/css/font-awesome.css">
+    <link rel="stylesheet" href="../common/css/bootsnav.css">
+    <script src="../common/js/jquery-2.0.3.js"></script>
+    <script src="../common/js/bootstrap.js"></script>
+    <script src="../common/js/bootsnav.js"></script>
     <!--注意必须指明rel="stylesheet/less" type="text/css"-->
     <link rel="stylesheet/less" href="css/base.less">
-    <link rel="stylesheet/less" href="css/demo1.less">
-    <link rel="stylesheet/less" href="css/demo2.less">
-    <link rel="stylesheet/less" href="css/demo3.less">
-    <link rel="stylesheet/less" href="css/demo4.less">
-    <link rel="stylesheet/less" href="css/demo5.less">
-    <link rel="stylesheet/less" href="css/demo6.less">
-    <link rel="stylesheet/less" href="css/demo7.less">
+    <link rel="stylesheet/less" href="css/变量计算.less">
+    <link rel="stylesheet/less" href="css/嵌套规则.less">
+    <link rel="stylesheet/less" href="css/转义.less">
+    <link rel="stylesheet/less" href="css/命名空间和访问器.less">
+    <link rel="stylesheet/less" href="css/变量范围.less">
+    <link rel="stylesheet/less" href="css/导入.less">
+    <link rel="stylesheet/less" href="css/扩展.less">
 
     <style rel="stylesheet/less" type="text/css">
+        .container{
+            width:100%;
+            height:auto;
+            position: fixed;
+            top:0px;
+            left: 0px;
+        }
+        nav.navbar.bootsnav{
+            border: none;
+        }
 
+        nav.navbar.bootsnav .navbar-header{
+            float:right;
+        }
+
+       /* .navbar-nav{
+            float: left;
+        }*/
+        nav.navbar.bootsnav ul.nav > li > a{
+            color: #474747;
+            text-transform: uppercase;
+            padding: 30px;
+        }
+        nav.navbar.bootsnav ul.nav > li:hover{
+            background: #f4f4f4;
+        }
+        .nav > li:after{
+            content: "";
+            width: 0;
+            height: 5px;
+            background: #34c9dd;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transition: all 0.5s ease 0s;
+        }
+        .nav > li:hover:after{
+            width: 100%;
+        }
+
+        nav.navbar.bootsnav ul.nav > li > a{
+            padding: 15px;
+            font-weight: 600;
+        }
+
+        nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle:after{
+            content: "+";
+            font-family: 'FontAwesome';
+            font-size: 16px;
+            font-weight: 500;
+            position: absolute;
+            top: 27%;
+            right: 5%;
+            transition: all 0.4s ease 0s;
+        }
+        nav.navbar.bootsnav ul.nav > li.dropdown.on > a.dropdown-toggle:after{
+            content: "\f105";
+            transform: rotate(90deg);
+        }
+        .dropdown-menu.multi-dropdown{
+            position: absolute;
+            left: -100% !important;
+        }
+        nav.navbar.bootsnav li.dropdown ul.dropdown-menu{
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border: none;
+        }
+        @media only screen and (max-width:990px){
+            nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle:after,
+            nav.navbar.bootsnav ul.nav > li.dropdown.on > a.dropdown-toggle:after{ content: " "; }
+            .dropdown-menu.multi-dropdown{ left: 0 !important; }
+            nav.navbar.bootsnav ul.nav > li:hover{ background: transparent; }
+            nav.navbar.bootsnav ul.nav > li > a{ margin: 0; }
+        }
     </style>
     <script type="text/javascript">
 /*        less = {
@@ -29,9 +108,62 @@
         };*/
     </script>
     <script src="js/less.js"></script>
+
+
 </head>
 <body>
-<h1>less教程</h1>
+<div class="container" style="padding: 0px;">
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-default navbar-mobile bootsnav">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li><a href="#">首页</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Less语法</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#变量计算" >变量计算</a></li>
+                                <li><a href="#嵌套规则" >嵌套规则</a></li>
+                                <li><a href="#Less转义~">Less 转义 ~</a></li>
+                                <li><a href="#Less命名空间和访问器" >Less 命名空间和访问器</a></li>
+                                <li><a href="#Less变量范围" >Less 变量范围</a></li>
+                                <li><a href="#Less注释" >Less 注释</a></li>
+                                <li><a href="#Less导入" >Less 导入</a></li>
+                                <li><a href="#Less变量" >Less 变量</a></li>
+                                <li><a href="#Less扩展" >Less 扩展</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" >A</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">B</a></li>
+                                        <li><a href="#">B</a></li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" >B</a>
+                                            <ul class="dropdown-menu multi-dropdown">
+                                                <li><a href="#">C</a></li>
+                                                <li><a href="#">C</a></li>
+                                                <li><a href="#">C</a></li>
+                                                <li><a href="#">C</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">B</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+<h1 style="margin-top: 50px;">less教程</h1>
 <p>
     参考教程：<br/>
     https://www.cnblogs.com/landeanfen/p/6047031.html<br/>
